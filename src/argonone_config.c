@@ -326,6 +326,7 @@ int Read_Configuration_File(const char* filename, struct DTBO_Data* conf)
         return -1;
     }  
     struct DTBO_Config conf_in = { 0 };
+    memcpy(&conf_in, &conf->configuration, sizeof(struct DTBO_Config));
     char buffer[MAX_LEN];
     uint16_t line = 0;
     while (fgets(buffer, MAX_LEN, fp))
