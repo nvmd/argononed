@@ -29,8 +29,8 @@ check_distro() {
         *manjaro-arm*) distro='manjaro';;
         *opensuse-leap*) distro='opensuse-leap';;
         *opensuse-microos*) distro='opensuse-micoos';;
-        *opensuse-tumbleweed*)='opensuse-tumbleweed';;
-        *opensuse*)='opensuse';;
+        *opensuse-tumbleweed*) distro='opensuse-tumbleweed';;
+        *opensuse*) distro='opensuse';;
         *openwrt*) distro='openwrt';;
         *osmc*) distro='osmc';;
         *picore*) distro='piCore';;
