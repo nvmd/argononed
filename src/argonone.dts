@@ -1,9 +1,9 @@
-// Enable Argon1 daemon by darkelvenangle
+// Enable Argon1 daemon by darkelvenangel
 /dts-v1/;
 /plugin/;
 
 / {
-    compatible = "brcm,bcm2708";
+    compatible = "brcm,bcm2835";
 
     fragment@0 {
         target-path = "/";
