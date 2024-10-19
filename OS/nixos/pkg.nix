@@ -45,7 +45,10 @@ in stdenv.mkDerivation {
     export TARGET_DISTRO=nixos
   '';
 
-  patches = "OS/nixos/patches/*.patch";
+  patches = [
+    "OS/nixos/patches/nixos.patch"
+    "OS/nixos/patches/shutdown.patch"
+  ];
 
   buildFlags = [ "LOGLEVEL=${toString logLevel}" ];
 
