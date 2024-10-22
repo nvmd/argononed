@@ -71,30 +71,33 @@
       };
     };
 
-    hardware.deviceTree.overlays = [{
-      name = "argonone";
-      dtboFile = "${arg1pk}/argonone.dtbo";
-    } {
-      name = "argonone-enable-overlay";
-      dtsText = let
-        inherit (builtins) concatStringsSep;
-        src = with self.settings;
-          [fanSpeed0 fanSpeed1 fanSpeed2 fanTemp0 fanTemp1 fanTemp2 hysteresis];
-        fanCfg = concatStringsSep " " (map toString src);
-      in ''
-        /dts-v1/;
-        /plugin/;
-        / {
-          compatible = "brcm,bcm2711";
-          fragment@0 {
-            target = <&argonone>;
-            __overlay__ {
-              argonone-cfg = /bits/ 8 <${fanCfg}>;
+    hardware.deviceTree.overlays = [
+      {
+        name = "argonone";
+        dtboFile = "${arg1pk}/argonone.dtbo";
+      }
+      {
+        name = "argonone-enable-overlay";
+        dtsText = let
+          inherit (builtins) concatStringsSep;
+          src = with self.settings;
+            [fanSpeed0 fanSpeed1 fanSpeed2 fanTemp0 fanTemp1 fanTemp2 hysteresis];
+          fanCfg = concatStringsSep " " (map toString src);
+        in ''
+          /dts-v1/;
+          /plugin/;
+          / {
+            compatible = "brcm,bcm2711";
+            fragment@0 {
+              target = <&argonone>;
+              __overlay__ {
+                argonone-cfg = /bits/ 8 <${fanCfg}>;
+              };
             };
           };
-        };
-      '';
-    }];
+        '';
+      }
+    ];
 
     services.logrotate.settings.argononed = {
       files = toString /var/log/argononed.log;
