@@ -60,21 +60,21 @@
 
         serviceConfig = {
           Type = "forking";
-          ExecStart = "${arg1pk}/argononed";
+          ExecStart = "${arg1pk}/sbin/argononed";
           PIDFile = "/run/argononed.pid";
           Restart = "on-failure";
         };
       };
 
       shutdown = {
-        argonone = "${arg1pk}/argonone-shutdown";
+        argonone = "${arg1pk}/lib/systemd/system-shutdown/argonone-shutdown";
       };
     };
 
     hardware.deviceTree.overlays = [
       {
         name = "argonone";
-        dtboFile = "${arg1pk}/argonone.dtbo";
+        dtboFile = "${arg1pk}/share/argonone/boot/overlays/argonone.dtbo";
       }
       {
         name = "argonone-enable-overlay";
